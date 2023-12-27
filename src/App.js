@@ -8,7 +8,6 @@ function App() {
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Header />
-
       <Home />
     </ThemeProvider>
   );

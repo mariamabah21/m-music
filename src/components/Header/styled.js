@@ -9,7 +9,7 @@ export const Wrapper = styled.header`
   border-radius: 0px 0px 25px 25px;
   height: 118px;
 `;
-export const LogoWrapper = styled.header`
+export const LogoWrapper = styled.div`
   display: flex;
   gap: 20px;
 `;
