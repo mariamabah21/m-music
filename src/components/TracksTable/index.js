@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { SubText } from "components/ui/typography";
+import { Subtext } from "components/ui/typography";
 import { Heart } from "components/ui/Icons";
 import { formatSecondsToMSS } from "utils/time";
 import {
@@ -25,19 +25,19 @@ function TracksTable({ tracks }) {
       <TableHead>
         <tr>
           <TableHeading>
-            <SubText>#</SubText>
+            <Subtext>#</Subtext>
           </TableHeading>
           <TableHeading>
-            <SubText>Song name</SubText>
+            <Subtext>Song name</Subtext>
           </TableHeading>
           <TableHeadingTime>
-            <SubText>Time</SubText>
+            <Subtext>Time</Subtext>
           </TableHeadingTime>
           <TableHeading>
-            <SubText>Album name</SubText>
+            <Subtext>Album name</Subtext>
           </TableHeading>
           <TableHeading>
-            <SubText>Action</SubText>
+            <Subtext>Action</Subtext>
           </TableHeading>
         </tr>
       </TableHead>
@@ -58,7 +58,7 @@ function TracksTable({ tracks }) {
               </TrackInfoTextWrapper>
             </TrackInfo>
             <TableData>
-              <SubText>{formatSecondsToMSS(track.duration)}</SubText>
+              <Subtext>{formatSecondsToMSS(track.duration)}</Subtext>
             </TableData>
             <TableData>
               <TrackSubText>{track.album.title}</TrackSubText>

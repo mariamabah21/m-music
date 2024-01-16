@@ -1,10 +1,13 @@
 import { Hero, Genres, Artists } from "components/HomePage";
+import { loadCharts } from "services/api";
 import { ContentWrapper, GreyTitle, StyledAside, TrendsAndArtistsSection } from "./styled";
 import { SectionTitle } from "components/ui/typography";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { loadCharts } from "services/api";
+
+import TracksTable from "components/TracksTable";
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -41,7 +44,7 @@ function Home() {
         <div>
           <GreyTitle>Global</GreyTitle>
           <SectionTitle>Trending Right now</SectionTitle>
-          <div>songs table</div>
+          <TracksTable tracks={chart?.tracks?.data} />
         </div>
         <StyledAside>
           <GreyTitle>Global</GreyTitle>

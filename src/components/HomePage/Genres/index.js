@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from "react";
 import Skeleton from "react-loading-skeleton";
-import axios from "axios";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ArrowLeft, ArrowRight } from "components/ui/Icons";
@@ -35,10 +34,6 @@ function Genres() {
 
   useEffect(() => {
     const loadData = async () => {
-      setIsLoading(true);
-      const data = await axios.get("/genre");
-      setGenres(data.data.data.filter((genre) => genre.name.toLowerCase() !== "all"));
-      setIsLoading(false);
       try {
         setIsLoading(true);
         const data = await loadGenres();

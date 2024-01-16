@@ -1,5 +1,5 @@
 import IconButton from "components/ui/IconButton";
-import { SubText, Text } from "components/ui/typography";
+import { Subtext, Text } from "components/ui/typography";
 import styled from "styled-components";
 
 export const Table = styled.table`
@@ -50,7 +50,7 @@ export const TrackTitle = styled(Text)`
   -webkit-box-orient: vertical;
 `;
 
-export const TrackSubText = styled(SubText)`
+export const TrackSubText = styled(Subtext)`
   display: -webkit-box;
   overflow: hidden;
   line-clamp: 1;
@@ -58,7 +58,7 @@ export const TrackSubText = styled(SubText)`
   -webkit-box-orient: vertical;
 `;
 
-export const SongNumberText = styled(SubText)`
+export const SongNumberText = styled(Subtext)`
   color: ${({ theme }) => theme.colors.secondaryGrey};
 `;
 
