@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   gap: 14px;
+  cursor: pointer;
 `;
 
 export const Image = styled.img`

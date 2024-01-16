@@ -1,3 +1,4 @@
+import { SectionSubtitle } from "components/ui/typography";
 import styled from "styled-components";
 
 export const ContentWrapper = styled.main`
@@ -10,4 +11,8 @@ export const TrendsAndArtistsSection = styled.section`
   gap: 90px;
   padding-bottom: 135px;
   overflow: hidden;
+`;
+
+export const GreyTitle = styled(SectionSubtitle)`
+  color: ${({ theme }) => theme.colors.secondaryGrey};
 `;

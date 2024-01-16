@@ -5,6 +5,7 @@ import { theme } from "styles/Theme";
 import Home from "pages/Home";
 import { GlobalStyles } from "styles/Global";
 import Header from "components/Header";
+
 // Import skeleton loader css
 import "react-loading-skeleton/dist/skeleton.css";
 

@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.aside``;
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 35px;
+`;
 
 export const ArtistsWrapper = styled.div`
   display: flex;

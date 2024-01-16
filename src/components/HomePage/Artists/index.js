@@ -5,7 +5,6 @@ import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Wrapper, ArtistsWrapper, ArtistSkeletonWrapper } from "./styled";
 import ArtistCard from "./ArtistCard";
-import { SectionTitle } from "components/ui/typography";
 
 function Artists() {
   const [artists, setGenres] = useState();
@@ -24,7 +23,6 @@ function Artists() {
 
   return (
     <Wrapper>
-      <SectionTitle>Top Artists</SectionTitle>
       <ArtistsWrapper>
         {isLoading &&
           [1, 2, 3, 4, 5, 6, 7, 8].map((num) => (

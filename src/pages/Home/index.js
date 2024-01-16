@@ -1,8 +1,10 @@
 import { Hero, Genres, Artists } from "components/HomePage";
-import { ContentWrapper, TrendsAndArtistsSection } from "./styled";
+import { ContentWrapper, GreyTitle, TrendsAndArtistsSection } from "./styled";
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
+import { SectionTitle } from "components/ui/typography";
 
 function Home() {
   return (
@@ -10,8 +12,17 @@ function Home() {
       <Hero />
       <Genres />
       <TrendsAndArtistsSection>
-        <div>Songs Table</div>
-        <Artists />
+        <div>
+          <GreyTitle>Global</GreyTitle>
+          <SectionTitle>Trending Right now</SectionTitle>
+          <div>songs table</div>
+        </div>
+        <aside>
+          <GreyTitle>Global</GreyTitle>
+          <SectionTitle>Top Artists</SectionTitle>
+
+          <Artists />
+        </aside>
       </TrendsAndArtistsSection>
     </ContentWrapper>
   );
