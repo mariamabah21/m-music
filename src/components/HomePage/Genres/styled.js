@@ -28,6 +28,7 @@ export const GenresWrapper = styled.div`
   gap: 10px;
   width: 100%;
   min-height: 116px;
+  gap: 20px;
 `;
 
 export const GenreSkeletonWrapper = styled.div`
