@@ -1,38 +1,20 @@
-import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
-import axios from "axios";
+import PropTypes from "prop-types";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Wrapper, ArtistsWrapper, ArtistSkeletonWrapper } from "./styled";
+import { Wrapper, ArtistsWrapper, ArtistSkeletonWrapper, ArtistLoaderWrapper } from "./styled";
 import ArtistCard from "./ArtistCard";
 
-function Artists() {
-  const [artists, setGenres] = useState();
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    const loadData = async () => {
-      setIsLoading(true);
-      const data = await axios.get("/genre");
-      setGenres(data.data.data.filter((genre) => genre.name.toLowerCase() !== "todos"));
-      setIsLoading(false);
-    };
-
-    loadData();
-  }, []);
-
+function Artists({ isLoading, artists }) {
   return (
     <Wrapper>
       <ArtistsWrapper>
         {isLoading &&
           [1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
-            <Skeleton
-              wrapper={ArtistSkeletonWrapper}
-              key={num}
-              height={116}
-              width={220}
-              borderRadius={25}
-            />
+            <ArtistLoaderWrapper key={num}>
+              <Skeleton wrapper={ArtistSkeletonWrapper} key={num} height={95} width={95} circle />
+              <Skeleton height={27} />
+            </ArtistLoaderWrapper>
           ))}
         <Swiper slidesPerView="auto" spaceBetween={20} modules={[Pagination]}>
           {!isLoading &&
@@ -47,4 +29,14 @@ function Artists() {
   );
 }
 
+Artists.propTypes = {
+  isLoading: PropTypes.bool,
+  artists: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      picture_medium: PropTypes.string,
+    }),
+  ),
+};
 export default Artists;
