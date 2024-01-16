@@ -1,5 +1,3 @@
-import IconButton from "components/ui/IconButton";
-import { Subtext, Text } from "components/ui/typography";
 import styled from "styled-components";
 
 export const Table = styled.table`
@@ -13,57 +11,11 @@ export const TableHead = styled.thead`
 `;
 
 export const TableHeading = styled.th`
-  padding: 30px 20px 30px 0;
+  padding: 30px 20px 30px ${(props) => (props.first ? "20px" : "0")};
 `;
 
 export const TableHeadingTime = styled(TableHeading)`
   min-width: 140px;
-`;
-
-export const TableData = styled.td`
-  padding: 15px 20px 15px 0;
-`;
-
-export const TrackInfo = styled(TableData)`
-  display: flex;
-  align-items: center;
-  gap: 25px;
-`;
-
-export const TrackInfoTextWrapper = styled(TableData)`
-  display: flex;
-  gap: 10px;
-  flex-direction: column;
-`;
-
-export const TrackInfoImage = styled.img`
-  height: 65px;
-  width: 65px;
-  border-radius: 15px;
-`;
-
-export const TrackTitle = styled(Text)`
-  display: -webkit-box;
-  overflow: hidden;
-  line-clamp: 1;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-`;
-
-export const TrackSubText = styled(Subtext)`
-  display: -webkit-box;
-  overflow: hidden;
-  line-clamp: 1;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-`;
-
-export const SongNumberText = styled(Subtext)`
-  color: ${({ theme }) => theme.colors.secondaryGrey};
-`;
-
-export const StyledIconButton = styled(IconButton)`
-  margin: 0 auto;
 `;
 
 export const Line = styled.td`
