@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 import { Subtext } from "components/ui/typography";
 
-import { TableHead, Table, TableHeading, TableHeadingTime, Line, TrackRow } from "./styled";
+import { TableHead, Table, TableHeading, TableHeadingTime, Line } from "./styled";
+import TrackRow from "./TrackRow";
 
 function TracksTable({ tracks }) {
   console.log(tracks);

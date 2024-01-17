@@ -16,7 +16,7 @@ import {
   IconWrapper,
 } from "./styled";
 
-function TrackRow({}) {
+function TrackRow({ track, index }) {
   return (
     <StyledTrackRow key={track.id}>
       <TableData>
@@ -26,7 +26,7 @@ function TrackRow({}) {
         </IconWrapper>
       </TableData>
       <TrackInfo>
-        <TrackInfoImage src={track.album.cover} alt={`${track.album.name}'s cover`} />
+        <TrackInfoImage src={track.album.cover} alt={`${track.album.title}'s cover`} />
         <TrackInfoTextWrapper>
           <TrackTitle>{track.title}</TrackTitle>
           <TrackSubText>{track.artist.name}</TrackSubText>
@@ -47,6 +47,21 @@ function TrackRow({}) {
   );
 }
 
-TrackRow.propTypes = {};
+TrackRow.propTypes = {
+  track: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    duration: PropTypes.number,
+    preview: PropTypes.string,
+    artist: PropTypes.shape({
+      name: PropTypes.string,
+    }),
+    album: PropTypes.shape({
+      title: PropTypes.string,
+      cover: PropTypes.string,
+    }),
+  }),
+  index: PropTypes.number,
+};
 
 export default TrackRow;

@@ -1,5 +1,5 @@
 import IconButton from "components/ui/IconButton";
-import { Subtext } from "components/ui/typography";
+import { Text, Subtext } from "components/ui/typography";
 import styled from "styled-components";
 
 export const TableData = styled.td`
