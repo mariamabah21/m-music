@@ -3,27 +3,27 @@ import { Subtext } from "components/ui/typography";
 
 import { TableHead, Table, TableHeading, TableHeadingTime, Line } from "./styled";
 import TrackRow from "./TrackRow";
+import Skeleton from "react-loading-skeleton";
 
-function TracksTable({ tracks }) {
-  console.log(tracks);
+function TracksTable({ tracks, isLoading }) {
   return (
     <Table cellSpacing={0}>
       <TableHead>
         <tr>
           <TableHeading first>
-            <Subtext>#</Subtext>
+            <Subtext> {isLoading ? <Skeleton width={25} /> : "#"} </Subtext>
           </TableHeading>
           <TableHeading>
-            <Subtext>Song name</Subtext>
+            <Subtext> {isLoading ? <Skeleton /> : "Song name"} </Subtext>
           </TableHeading>
           <TableHeadingTime>
-            <Subtext>Time</Subtext>
+            <Subtext> {isLoading ? <Skeleton /> : "Time"} </Subtext>
           </TableHeadingTime>
           <TableHeading>
-            <Subtext>Album name</Subtext>
+            <Subtext> {isLoading ? <Skeleton /> : "Album name"} </Subtext>
           </TableHeading>
           <TableHeading>
-            <Subtext>Action</Subtext>
+            <Subtext> {isLoading ? <Skeleton width={70} /> : "Action"} </Subtext>
           </TableHeading>
         </tr>
       </TableHead>
@@ -31,9 +31,10 @@ function TracksTable({ tracks }) {
         <tr>
           <Line colSpan={5} />
         </tr>
-        {tracks?.map((track, index) => (
-          <TrackRow key={track.id} track={track} index={index} />
-        ))}
+        {!isLoading &&
+          tracks?.map((track, index) => <TrackRow key={track.id} track={track} index={index} />)}
+
+        {isLoading && [...Array(9).keys()].map((num) => <TrackRow key={num} index={num} />)}
       </tbody>
     </Table>
   );
@@ -55,6 +56,7 @@ TracksTable.propTypes = {
       }),
     }),
   ),
+  isLoading: PropTypes.bool,
 };
 
 export default TracksTable;
