@@ -4,7 +4,7 @@ import { LogoWrapper, Wrapper } from "./styled";
 import IconButton from "components/ui/IconButton";
 import { ContentWrapper } from "components/Layout";
 
-function Header() {
+function Header(withBackground) {
   return (
     <Wrapper>
       <ContentWrapper display="flex" items="center" content="space-between">
@@ -12,7 +12,7 @@ function Header() {
           <Logo />
           <SectionSubtitle>MaMusic</SectionSubtitle>
         </LogoWrapper>
-        <IconButton withBackground>
+        <IconButton bg={withBackground}>
           <Search />
         </IconButton>
       </ContentWrapper>

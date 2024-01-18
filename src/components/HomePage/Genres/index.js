@@ -16,7 +16,7 @@ import {
 import { toast } from "react-toastify";
 import { loadGenres } from "services/api";
 
-function Genres() {
+function Genres(withBackground) {
   const [genres, setGenres] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -53,10 +53,10 @@ function Genres() {
       <TitleRow>
         <SectionSubtitle>Genres</SectionSubtitle>
         <ButtonsWrapper>
-          <Button withBackground width={36} height={36} onClick={handlePrev}>
+          <Button bg={withBackground} width={36} height={36} onClick={handlePrev}>
             <ArrowLeft />
           </Button>
-          <Button withBackground width={36} height={36} onClick={handleNext}>
+          <Button bg={withBackground} width={36} height={36} onClick={handleNext}>
             <ArrowRight />
           </Button>
         </ButtonsWrapper>

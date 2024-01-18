@@ -71,7 +71,7 @@ const track = {
 function Player(props) {
   return (
     <Wrapper>
-      <ContentWrapper display="flex">
+      <ContentWrapper display="flex" items="center">
         <TrackInfoWrapper>
           <TrackImage src={track.album.cover} alt={`${track?.album.title}'s cover`} />
           <TrackInfoTextWrapper>
