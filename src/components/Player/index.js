@@ -1,4 +1,5 @@
 import React from "react";
+// import Slider from "rc-slider";
 import {
   Wrapper,
   TrackInfoWrapper,
@@ -8,11 +9,13 @@ import {
   ControlsWrapper,
   ProgressWrapper,
   TrackTime,
+  VolumeWrapper,
 } from "./styled";
 import { ContentWrapper } from "components/Layout";
 import { Text } from "components/ui/typography";
-import { Play, SkipLeft, SkipRight } from "components/ui/Icons";
+import { Play, SkipLeft, SkipRight, Volume } from "components/ui/Icons";
 import IconButton from "components/ui/IconButton";
+// import { theme } from "styles/Theme";
 
 const track = {
   id: 1858539707,
@@ -70,19 +73,18 @@ function Player(props) {
       <ContentWrapper display="flex">
         <TrackInfoWrapper>
           <TrackImage src={track.album.cover} alt={`${track?.album.title}'s cover`} />
-          <TrackInfoTextWrapper />
-          <Text>{track.title}</Text>
-          <ArtistName>{track.title}</ArtistName>
+          <TrackInfoTextWrapper>
+            <Text>{track.title}</Text>
+            <ArtistName>{track.title}</ArtistName>
+          </TrackInfoTextWrapper>
         </TrackInfoWrapper>
         <ControlsWrapper>
           <IconButton>
             <SkipLeft />
           </IconButton>
-
           <IconButton width={55} height={55} withBackground>
             <Play />
           </IconButton>
-
           <IconButton>
             <SkipRight />
           </IconButton>
@@ -92,6 +94,9 @@ function Player(props) {
           <input type="range" />
           <TrackTime>2:30</TrackTime>
         </ProgressWrapper>
+        <VolumeWrapper>
+          <Volume />
+        </VolumeWrapper>
       </ContentWrapper>
     </Wrapper>
   );
