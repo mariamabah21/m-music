@@ -13,7 +13,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 // Import react tostify css
 import "react-toastify/dist/ReactToastify.css";
 
-// Import rc slider cs
+// Import rc slider css
 import "rc-slider/assets/index.css";
 
 function App() {

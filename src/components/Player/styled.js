@@ -17,7 +17,7 @@ export const TrackInfoWrapper = styled.div`
   display: flex;
   gap: 25px;
   align-items: center;
-  min-width: 400px;
+  min-width: 250px;
 `;
 
 export const TrackInfoTextWrapper = styled.div`
@@ -51,6 +51,7 @@ export const ProgressWrapper = styled.div`
 `;
 
 export const TrackTime = styled(Subtext)`
+  margin: 0 20px;
   color: ${(props) => (props.grey ? props.theme.colors.secondaryGrey : "inherit")};
 `;
 
@@ -59,4 +60,5 @@ export const VolumeWrapper = styled.div`
   align-items: center;
   gap: 22px;
   margin-left: 130px;
+  min-width: 180px;
 `;

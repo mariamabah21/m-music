@@ -1,5 +1,5 @@
 import React from "react";
-// import Slider from "rc-slider";
+import Slider from "rc-slider";
 import {
   Wrapper,
   TrackInfoWrapper,
@@ -15,6 +15,7 @@ import { ContentWrapper } from "components/Layout";
 import { Text } from "components/ui/typography";
 import { Play, SkipLeft, SkipRight, Volume } from "components/ui/Icons";
 import IconButton from "components/ui/IconButton";
+import { theme } from "styles/Theme";
 // import { theme } from "styles/Theme";
 
 const track = {
@@ -91,11 +92,44 @@ function Player(props) {
         </ControlsWrapper>
         <ProgressWrapper>
           <TrackTime>0:00</TrackTime>
-          <input type="range" />
+          <Slider
+            style={{ padding: "3px 0" }}
+            trackStyle={{
+              height: 8,
+              backgroundColor: theme.colors.white,
+            }}
+            railStyle={{
+              height: 8,
+              backgroundColor: theme.colors.darkGrey,
+            }}
+            handleStyle={{
+              border: "none",
+              backgroundColor: theme.colors.white,
+              marginTop: -3,
+            }}
+          />
           <TrackTime>2:30</TrackTime>
         </ProgressWrapper>
         <VolumeWrapper>
-          <Volume />
+          <IconButton height={24} width={24}>
+            <Volume />
+          </IconButton>
+          <Slider
+            style={{ padding: "3px 0" }}
+            trackStyle={{
+              height: 8,
+              backgroundColor: theme.colors.white,
+            }}
+            railStyle={{
+              height: 8,
+              backgroundColor: theme.colors.darkGrey,
+            }}
+            handleStyle={{
+              border: "none",
+              backgroundColor: theme.colors.white,
+              marginTop: -3,
+            }}
+          />
         </VolumeWrapper>
       </ContentWrapper>
     </Wrapper>
