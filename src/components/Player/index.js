@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Slider from "rc-slider";
 import {
   Wrapper,
@@ -13,10 +13,9 @@ import {
 } from "./styled";
 import { ContentWrapper } from "components/Layout";
 import { Text } from "components/ui/typography";
-import { Play, SkipLeft, SkipRight, Volume } from "components/ui/Icons";
+import { Pause, Play, SkipLeft, SkipRight, Volume } from "components/ui/Icons";
 import IconButton from "components/ui/IconButton";
 import { theme } from "styles/Theme";
-// import { theme } from "styles/Theme";
 
 const track = {
   id: 1858539707,
@@ -69,9 +68,31 @@ const track = {
 };
 
 function Player(props) {
+  const [playerState, setPlayerState] = useState({
+    isPlaying: false,
+    currentTime: 0,
+    duration: 0,
+  });
+  const audioRef = useRef();
+
+  const togglePlay = () => {
+    setPlayerState((prev) => ({ ...prev, isPlaying: !prev.isPlaying }));
+  };
+
+  useEffect(() => {
+    if (!audioRef.current) return;
+
+    if (playerState.isPlaying) {
+      audioRef.current.play();
+    } else {
+      audioRef.current.pause();
+    }
+  }, [audioRef, track, playerState.isPlaying]);
+
   return (
     <Wrapper>
       <ContentWrapper display="flex" items="center">
+        <audio ref={audioRef} src={track.preview} controls></audio>
         <TrackInfoWrapper>
           <TrackImage src={track.album.cover} alt={`${track?.album.title}'s cover`} />
           <TrackInfoTextWrapper>
@@ -83,8 +104,8 @@ function Player(props) {
           <IconButton>
             <SkipLeft />
           </IconButton>
-          <IconButton width={55} height={55} withBackground>
-            <Play />
+          <IconButton onClick={togglePlay} width={55} height={55} withBackground>
+            {playerState.isPlaying ? <Pause /> : <Play />}
           </IconButton>
           <IconButton>
             <SkipRight />
