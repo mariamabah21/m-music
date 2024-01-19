@@ -16,6 +16,7 @@ import { Text } from "components/ui/typography";
 import { Pause, Play, SkipLeft, SkipRight, Volume } from "components/ui/Icons";
 import IconButton from "components/ui/IconButton";
 import { theme } from "styles/Theme";
+import { formatSecondsToMSS } from "utils/time";
 
 const track = {
   id: 1858539707,
@@ -72,11 +73,35 @@ function Player(props) {
     isPlaying: false,
     currentTime: 0,
     duration: 0,
+    volume: 0.7,
   });
   const audioRef = useRef();
 
   const togglePlay = () => {
     setPlayerState((prev) => ({ ...prev, isPlaying: !prev.isPlaying }));
+  };
+
+  const onTimeUpdate = () => {
+    if (!audioRef.current) return;
+    const currentTime = audioRef.current.currentTime;
+    const duration = audioRef.current.duration;
+
+    setPlayerState((prev) => ({ ...prev, currentTime, duration }));
+  };
+
+  const onTrackTimeDrag = (newTime) => {
+    if (!audioRef?.current) return;
+
+    audioRef.current.currentTime = newTime;
+
+    setPlayerState((prev) => ({ ...prev, currentTime: newTime }));
+  };
+
+  const onVolumeChange = (newVolume) => {
+    if (!audioRef?.current) return;
+    audioRef.current.volume = newVolume;
+
+    setPlayerState((prev) => ({ ...prev, volume: newVolume }));
   };
 
   useEffect(() => {
@@ -92,7 +117,14 @@ function Player(props) {
   return (
     <Wrapper>
       <ContentWrapper display="flex" items="center">
-        <audio ref={audioRef} src={track.preview} controls></audio>
+        <audio
+          ref={audioRef}
+          src={track.preview}
+          controls
+          onTimeUpdate={onTimeUpdate}
+          onLoadedMetadata={onTimeUpdate}
+          hidden
+        ></audio>
         <TrackInfoWrapper>
           <TrackImage src={track.album.cover} alt={`${track?.album.title}'s cover`} />
           <TrackInfoTextWrapper>
@@ -112,8 +144,13 @@ function Player(props) {
           </IconButton>
         </ControlsWrapper>
         <ProgressWrapper>
-          <TrackTime>0:00</TrackTime>
+          <TrackTime>{formatSecondsToMSS(playerState.currentTime)}</TrackTime>
           <Slider
+            onChange={onTrackTimeDrag}
+            step={0.2}
+            min={0}
+            max={playerState.duration}
+            value={playerState.currentTime}
             style={{ padding: "3px 0" }}
             trackStyle={{
               height: 8,
@@ -129,13 +166,18 @@ function Player(props) {
               marginTop: -3,
             }}
           />
-          <TrackTime>2:30</TrackTime>
+          <TrackTime>{formatSecondsToMSS(playerState.duration)}</TrackTime>
         </ProgressWrapper>
         <VolumeWrapper>
           <IconButton height={24} width={24}>
             <Volume />
           </IconButton>
           <Slider
+            step={0.01}
+            onChangeVolume={onVolumeChange}
+            min={0}
+            max={1}
+            value={playerState.volume}
             style={{ padding: "3px 0" }}
             trackStyle={{
               height: 8,
