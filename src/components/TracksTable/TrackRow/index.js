@@ -17,9 +17,9 @@ import {
 } from "./styled";
 import Skeleton from "react-loading-skeleton";
 
-function TrackRow({ track, index }) {
+function TrackRow({ track, index, onClick }) {
   return (
-    <StyledTrackRow key={track?.id}>
+    <StyledTrackRow key={track?.id} onClick={() => onClick(track)}>
       <TableData>
         <SongNumberText className="text">
           {track ? String(index + 1).padStart(2, "0") : <Skeleton width={27} height={27} />}
@@ -61,6 +61,7 @@ function TrackRow({ track, index }) {
 }
 
 TrackRow.propTypes = {
+  onClick: PropTypes.func,
   track: PropTypes.shape({
     id: PropTypes.number,
     title: PropTypes.string,
