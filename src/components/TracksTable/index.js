@@ -10,7 +10,9 @@ import { actions } from "context/actions";
 
 function TracksTable({ tracks, isLoading }) {
   const dispatch = useContext(PlayerDispatchContext);
+
   const handleTrackClick = (track) => {
+    console.log(track);
     dispatch({
       type: actions.SET_TRACKS_DATA,
       track: track,

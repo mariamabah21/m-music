@@ -20,11 +20,12 @@ import { formatSecondsToMSS } from "utils/time";
 import { PlayerContext } from "context/playerContext";
 
 function Player(props) {
-  const { track, isPlaying } = useContext(PlayerContext);
+  const { track } = useContext(PlayerContext);
 
   console.log(track);
 
   const [playerState, setPlayerState] = useState({
+    isPlaying: false,
     currentTime: 0,
     duration: 0,
     volume: 0.7,
@@ -33,7 +34,7 @@ function Player(props) {
   const audioRef = useRef();
 
   const togglePlay = () => {
-    // setPlayerState((prev) => ({ ...prev, isPlaying: !prev.isPlaying }));
+    setPlayerState((prev) => ({ ...prev, isPlaying: !prev.isPlaying }));
   };
 
   const toggleVolume = () => {
@@ -68,12 +69,12 @@ function Player(props) {
   useEffect(() => {
     if (!audioRef.current) return;
 
-    if (isPlaying) {
+    if (playerState.isPlaying) {
       audioRef.current.play();
     } else {
       audioRef.current.pause();
     }
-  }, [audioRef, track, isPlaying]);
+  }, [audioRef, track, playerState.isPlaying]);
 
   if (!track) {
     return null;
