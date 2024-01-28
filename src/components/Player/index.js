@@ -71,7 +71,7 @@ function Player(props) {
     if (!audioRef.current) return;
 
     if (isPlaying) {
-      audioRef.current.play();
+      audioRef.current.play().catch((err) => console.log(err));
     } else {
       audioRef.current.pause();
     }
@@ -91,6 +91,7 @@ function Player(props) {
           onTimeUpdate={onTimeUpdate}
           onLoadedMetadata={onTimeUpdate}
           hidden
+          onEnded={handleNextSong}
         ></audio>
         <TrackInfoWrapper>
           <TrackImage src={track.album.cover} alt={`${track?.album.title}'s cover`} />

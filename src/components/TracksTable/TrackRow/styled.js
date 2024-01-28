@@ -36,10 +36,11 @@ export const TrackInfo = styled(TableData)`
   gap: 25px;
 `;
 
-export const TrackInfoTextWrapper = styled(TableData)`
+export const TrackInfoTextWrapper = styled.div`
   display: flex;
   gap: 10px;
   flex-direction: column;
+  padding: 10px 20px 10px 0;
 `;
 
 export const TrackInfoImage = styled.img`
