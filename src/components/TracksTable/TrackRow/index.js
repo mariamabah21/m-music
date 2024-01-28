@@ -1,5 +1,5 @@
 import React from "react";
-import { Heart, Play } from "components/ui/Icons";
+import { Heart, Pause, Play } from "components/ui/Icons";
 import { formatSecondsToMSS } from "utils/time";
 import { Subtext } from "components/ui/typography";
 import PropTypes from "prop-types";
@@ -17,16 +17,14 @@ import {
 } from "./styled";
 import Skeleton from "react-loading-skeleton";
 
-function TrackRow({ track, index, onClick }) {
+function TrackRow({ track, index, onClick, isPlaying }) {
   return (
     <StyledTrackRow key={track?.id} onClick={() => onClick(track)}>
       <TableData>
         <SongNumberText className="text">
           {track ? String(index + 1).padStart(2, "0") : <Skeleton width={27} height={27} />}
         </SongNumberText>
-        <IconWrapper className="icon">
-          <Play />
-        </IconWrapper>
+        <IconWrapper className="icon">{isPlaying ? <Pause /> : <Play />}</IconWrapper>
       </TableData>
       <TrackInfo>
         {track ? (
@@ -76,6 +74,7 @@ TrackRow.propTypes = {
     }),
   }),
   index: PropTypes.number,
+  isPlaying: PropTypes.bool,
 };
 
 export default TrackRow;

@@ -1,4 +1,6 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useContext } from "react";
+import { actions } from "context/actions";
 import Slider from "rc-slider";
 import {
   Wrapper,
@@ -10,22 +12,20 @@ import {
   ProgressWrapper,
   TrackTime,
   VolumeWrapper,
+  TrackTitle,
 } from "./styled";
 import { ContentWrapper } from "components/Layout";
-import { Text } from "components/ui/typography";
 import { Pause, Play, SkipLeft, SkipRight, Volume } from "components/ui/Icons";
 import IconButton from "components/ui/IconButton";
 import { theme } from "styles/Theme";
 import { formatSecondsToMSS } from "utils/time";
-import { PlayerContext } from "context/playerContext";
+import { PlayerContext, PlayerDispatchContext } from "context/playerContext";
 
 function Player(props) {
-  const { track } = useContext(PlayerContext);
-
-  console.log(track);
+  const dispatch = useContext(PlayerDispatchContext);
+  const { track, isPlaying } = useContext(PlayerContext);
 
   const [playerState, setPlayerState] = useState({
-    isPlaying: false,
     currentTime: 0,
     duration: 0,
     volume: 0.7,
@@ -33,9 +33,7 @@ function Player(props) {
 
   const audioRef = useRef();
 
-  const togglePlay = () => {
-    setPlayerState((prev) => ({ ...prev, isPlaying: !prev.isPlaying }));
-  };
+  const togglePlay = () => dispatch({ type: actions.TOGGLE_PLAY });
 
   const toggleVolume = () => {
     const newVolume = playerState.volume > 0 ? 0 : 1;
@@ -66,15 +64,18 @@ function Player(props) {
     setPlayerState((prev) => ({ ...prev, volume: newVolume }));
   };
 
+  const handleNextSong = () => dispatch({ type: actions.NEXT_SONG });
+  const handlePrevSong = () => dispatch({ type: actions.PREV_SONG });
+
   useEffect(() => {
     if (!audioRef.current) return;
 
-    if (playerState.isPlaying) {
+    if (isPlaying) {
       audioRef.current.play();
     } else {
       audioRef.current.pause();
     }
-  }, [audioRef, track, playerState.isPlaying]);
+  }, [audioRef, track, isPlaying]);
 
   if (!track) {
     return null;
@@ -94,18 +95,18 @@ function Player(props) {
         <TrackInfoWrapper>
           <TrackImage src={track.album.cover} alt={`${track?.album.title}'s cover`} />
           <TrackInfoTextWrapper>
-            <Text>{track.title}</Text>
+            <TrackTitle>{track.title}</TrackTitle>
             <ArtistName>{track.title}</ArtistName>
           </TrackInfoTextWrapper>
         </TrackInfoWrapper>
         <ControlsWrapper>
-          <IconButton>
+          <IconButton onClick={handlePrevSong}>
             <SkipLeft />
           </IconButton>
           <IconButton onClick={togglePlay} width={55} height={55} withBackground>
-            {playerState.isPlaying ? <Pause /> : <Play />}
+            {isPlaying ? <Pause /> : <Play />}
           </IconButton>
-          <IconButton>
+          <IconButton onClick={handleNextSong}>
             <SkipRight />
           </IconButton>
         </ControlsWrapper>
