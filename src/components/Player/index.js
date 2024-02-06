@@ -21,7 +21,7 @@ import { theme } from "styles/Theme";
 import { formatSecondsToMSS } from "utils/time";
 import { PlayerContext, PlayerDispatchContext } from "context/playerContext";
 
-function Player(props) {
+function Player() {
   const dispatch = useContext(PlayerDispatchContext);
   const { track, isPlaying } = useContext(PlayerContext);
 
