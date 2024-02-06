@@ -18,6 +18,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 // Import rc slider css
 import "rc-slider/assets/index.css";
+import { Route, Routes } from "react-router-dom";
+import Search from "pages/Search";
 
 function App() {
   const [state, dispatch] = useReducer(playerReducer, initialState);
@@ -32,7 +34,11 @@ function App() {
           >
             <GlobalStyles />
             <Header />
-            <Home />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/search" element={<Search />} />
+            </Routes>
+
             <Player />
             <ToastContainer
               position="bottom-left"
