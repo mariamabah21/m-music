@@ -14,7 +14,6 @@ const Play = styled(PlayIcon)`
   fill: ${(props) => props.color || "white"};
   stroke: ${(props) => props.color || "white"};
 `;
-console.log(PlayIcon);
 const SkipLeft = styled(SkipIcon)`
   fill: ${(props) => props.color || "white"};
 `;

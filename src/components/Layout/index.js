@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import Header from "components/Header";
+import Player from "components/Player";
+import { Outlet } from "react-router-dom";
 
 export const ContentWrapper = styled.div`
   max-width: 1920px;
@@ -9,3 +12,17 @@ export const ContentWrapper = styled.div`
   align-items: ${(props) => props.items || "flex-start"};
   justify-content: ${(props) => props.content || "start"};
 `;
+
+function Layout() {
+  return (
+    <>
+      <Header />
+      <ContentWrapper>
+        <Outlet />
+      </ContentWrapper>
+      <Player />
+    </>
+  );
+}
+
+export default Layout;

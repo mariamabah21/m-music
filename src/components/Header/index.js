@@ -9,11 +9,13 @@ function Header(withBackground) {
   return (
     <Wrapper>
       <ContentWrapper display="flex" items="center" content="space-between">
-        <LogoWrapper>
-          <Logo />
-          <SectionSubtitle>MaMusic</SectionSubtitle>
-        </LogoWrapper>
-        <Link>
+        <Link to="/">
+          <LogoWrapper>
+            <Logo />
+            <SectionSubtitle>MaMusic</SectionSubtitle>
+          </LogoWrapper>
+        </Link>
+        <Link to="/search">
           <IconButton bg={withBackground}>
             <Search />
           </IconButton>
