@@ -1,3 +1,6 @@
+import { Route, Routes } from "react-router-dom";
+import Search from "pages/Search";
+import Layout from "components/Layout";
 import { ThemeProvider } from "styled-components";
 import { SkeletonTheme } from "react-loading-skeleton";
 import { ToastContainer } from "react-toastify";
@@ -7,8 +10,6 @@ import { PlayerContext, PlayerDispatchContext } from "context/playerContext";
 import { theme } from "styles/Theme";
 import Home from "pages/Home";
 import { GlobalStyles } from "styles/Global";
-import Header from "components/Header";
-import Player from "components/Player";
 
 // Import skeleton loader css
 import "react-loading-skeleton/dist/skeleton.css";
@@ -18,9 +19,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 // Import rc slider css
 import "rc-slider/assets/index.css";
-import { Route, Routes } from "react-router-dom";
-import Search from "pages/Search";
-import Layout from "components/Layout";
 
 function App() {
   const [state, dispatch] = useReducer(playerReducer, initialState);

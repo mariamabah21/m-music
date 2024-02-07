@@ -11,7 +11,6 @@ import TracksTable from "components/TracksTable";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-import { ContentWrapper } from "components/Layout";
 
 function Home() {
   const [chart, setChart] = useState();
@@ -38,7 +37,7 @@ function Home() {
   }, []);
 
   return (
-    <ContentWrapper>
+    <main>
       <Hero />
       <Genres />
       <TrendsAndArtistsSection>
@@ -53,7 +52,7 @@ function Home() {
           <Artists isLoading={isLoading} artists={chart?.artists?.data} />
         </StyledAside>
       </TrendsAndArtistsSection>
-    </ContentWrapper>
+    </main>
   );
 }
 

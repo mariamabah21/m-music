@@ -2,6 +2,7 @@ import axios from "axios";
 
 const API_CHART_URL = "/chart";
 const API_ALL_GENRES_URL = "/genre";
+const API_SEARCH_GENRES_URL = "/search";
 
 export const loadCharts = async () => {
   try {
@@ -24,5 +25,17 @@ export const loadGenres = async () => {
     return data.data.data.filter((genre) => genre.name.toLowerCase() !== "all");
   } catch (err) {
     throw Error("Failed to load genres!");
+  }
+};
+
+export const search = async (searchQuery) => {
+  try {
+    const data = await axios.get(`${API_SEARCH_GENRES_URL}?q={searchQuery}`);
+
+    if (!data.data.data) throw Error();
+
+    return data.data.data;
+  } catch (err) {
+    throw Error("Failed to load tracks!");
   }
 };
