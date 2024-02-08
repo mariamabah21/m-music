@@ -5,9 +5,10 @@ import { useState } from "react";
 // tostify import
 import { toast } from "react-toastify";
 import { search } from "services/api";
+import TracksTable from "components/TracksTable";
 
 function Search() {
-  const [isLoading, setisLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [tracks, setTracks] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -30,7 +31,12 @@ function Search() {
   return (
     <Wrapper>
       <input value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} />
-      <TableTitle>Result by: {searchQuery}</TableTitle>
+      {tracks?.length > 0 && (
+        <>
+          <TableTitle>Result by: {searchQuery}</TableTitle>
+          <TracksTable isLoading={isLoading} tracks={tracks} />
+        </>
+      )}
     </Wrapper>
   );
 }

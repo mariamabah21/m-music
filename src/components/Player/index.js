@@ -94,7 +94,7 @@ function Player() {
           onEnded={handleNextSong}
         ></audio>
         <TrackInfoWrapper>
-          <TrackImage src={track.album.cover} alt={`${track?.album.title}'s cover`} />
+          <TrackImage src={track?.album?.cover} alt={`${track?.album?.title}'s cover`} />
           <TrackInfoTextWrapper>
             <TrackTitle>{track.title}</TrackTitle>
             <ArtistName>{track.title}</ArtistName>

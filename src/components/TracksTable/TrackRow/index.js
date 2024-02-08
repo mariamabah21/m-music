@@ -34,14 +34,14 @@ function TrackRow({ track, index, onClick, isPlaying }) {
         )}
         <TrackInfoTextWrapper>
           <TrackTitle>{track?.title || <Skeleton width={320} />} </TrackTitle>
-          <TrackSubText>{track?.artist.name || <Skeleton width={250} />}</TrackSubText>
+          <TrackSubText>{track?.artist?.name || <Skeleton width={250} />}</TrackSubText>
         </TrackInfoTextWrapper>
       </TrackInfo>
       <TableData>
         <Subtext>{formatSecondsToMSS(track?.duration) || <Skeleton width={48} />}</Subtext>
       </TableData>
       <TableData>
-        <TrackSubText>{track?.album.title || <Skeleton width={250} />}</TrackSubText>
+        <TrackSubText>{track?.album?.title || <Skeleton width={250} />}</TrackSubText>
       </TableData>
       <TableData>
         {track ? (
