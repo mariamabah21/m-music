@@ -31,12 +31,7 @@ function Search() {
   return (
     <Wrapper>
       <input value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} />
-      {tracks?.length > 0 && (
-        <>
-          <TableTitle>Result by: {searchQuery}</TableTitle>
-          <TracksTable isLoading={isLoading} tracks={tracks} />
-        </>
-      )}
+      <TableTitle>Results by: {searchQuery}</TableTitle>
     </Wrapper>
   );
 }
