@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_CHART_URL = "/chart";
 const API_ALL_GENRES_URL = "/genre";
-const API_SEARCH_GENRES_URL = "/search";
+const API_SEARCH_URL = "/search";
 
 export const loadCharts = async () => {
   try {
@@ -30,7 +30,7 @@ export const loadGenres = async () => {
 
 export const search = async (searchQuery) => {
   try {
-    const data = await axios.get(`${API_SEARCH_GENRES_URL}?q={searchQuery}`);
+    const data = await axios.get(`${API_SEARCH_URL}?q={searchQuery}`);
 
     if (!data.data.data) throw Error();
 
