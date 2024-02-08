@@ -30,7 +30,7 @@ export const loadGenres = async () => {
 
 export const search = async (searchQuery) => {
   try {
-    const data = await axios.get(`${API_SEARCH_URL}?q={searchQuery}`);
+    const data = await axios.get(`${API_SEARCH_URL}?q=${searchQuery}`);
 
     if (!data.data.data) throw Error();
 

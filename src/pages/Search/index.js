@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { TableTitle, Wrapper } from "./styled";
+import TracksTable from "components/TracksTable";
+import Input from "components/ui/Input";
 import { useState } from "react";
+import { search } from "services/api";
 
 // tostify import
 import { toast } from "react-toastify";
-import { search } from "services/api";
-import TracksTable from "components/TracksTable";
 
 function Search() {
   const [isLoading, setIsLoading] = useState(false);
@@ -16,8 +17,9 @@ function Search() {
     const loadData = async () => {
       try {
         setIsLoading(true);
-        const data = await search();
+        const data = await search(searchQuery);
         setTracks(data);
+        console.log(data);
       } catch (err) {
         toast.error(err.message);
       } finally {
@@ -30,8 +32,17 @@ function Search() {
 
   return (
     <Wrapper>
-      <input value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} />
-      <TableTitle>Results by: {searchQuery}</TableTitle>
+      <Input
+        placeholder="Search..."
+        value={searchQuery}
+        onChange={(event) => setSearchQuery(event.target.value)}
+      />
+      {tracks?.length > 0 && (
+        <div>
+          <TableTitle>Results by: {searchQuery}</TableTitle>
+          <TracksTable isLoading={isLoading} tracks={tracks} />
+        </div>
+      )}
     </Wrapper>
   );
 }
