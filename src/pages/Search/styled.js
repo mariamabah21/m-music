@@ -9,6 +9,12 @@ export const Wrapper = styled.div`
   padding-top: 52px;
   padding-bottom: calc(${PLAYER_HEIGHT}px + 50px);
 `;
+
+export const InputWrapper = styled.div`
+  margin: 0 auto;
+  width: 70%;
+`;
+
 export const TableTitle = styled(SectionSubtitle)`
   margin-bottom: 30px;
 `;

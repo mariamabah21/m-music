@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
-import { TableTitle, Wrapper } from "./styled";
+import React from "react";
+import { toast } from "react-toastify";
+import SearchIcon from "assets/icons/search.svg";
+import { useState, useEffect } from "react";
 import TracksTable from "components/TracksTable";
 import Input from "components/ui/Input";
-import { useState } from "react";
 import { search } from "services/api";
-
-// tostify import
-import { toast } from "react-toastify";
+import { InputWrapper, TableTitle, Wrapper } from "./styled";
 
 function Search() {
   const [isLoading, setIsLoading] = useState(false);
@@ -32,12 +31,15 @@ function Search() {
 
   return (
     <Wrapper>
-      <Input
-        placeholder="Search..."
-        value={searchQuery}
-        onChange={(event) => setSearchQuery(event.target.value)}
-      />
-      {tracks?.length > 0 && (
+      <InputWrapper>
+        <Input
+          placeholder="Search..."
+          value={searchQuery}
+          onChange={(event) => setSearchQuery(event.target.value)}
+          startIcon={SearchIcon}
+        />
+      </InputWrapper>
+      {searchQuery && tracks?.length > 0 && (
         <div>
           <TableTitle>Results by: {searchQuery}</TableTitle>
           <TracksTable isLoading={isLoading} tracks={tracks} />
