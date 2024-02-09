@@ -38,7 +38,9 @@ function TrackRow({ track, index, onClick, isPlaying }) {
         </TrackInfoTextWrapper>
       </TrackInfo>
       <TableData>
-        <Subtext>{formatSecondsToMSS(track?.duration) || <Skeleton width={48} />}</Subtext>
+        <Subtext>
+          {track?.duration ? formatSecondsToMSS(track?.duration) : <Skeleton width={48} />}
+        </Subtext>
       </TableData>
       <TableData>
         <TrackSubText>{track?.album?.title || <Skeleton width={350} />}</TrackSubText>

@@ -6,6 +6,7 @@ import TracksTable from "components/TracksTable";
 import Input from "components/ui/Input";
 import { search } from "services/api";
 import { InputWrapper, TableTitle, Wrapper } from "./styled";
+import { SectionSubtitle, SectionTitle } from "components/ui/typography";
 
 function Search() {
   const [isLoading, setIsLoading] = useState(false);
@@ -39,11 +40,16 @@ function Search() {
           startIcon={SearchIcon}
         />
       </InputWrapper>
-      {searchQuery && tracks?.length > 0 && (
+      {searchQuery(
         <div>
           <TableTitle>Results by: {searchQuery}</TableTitle>
-          <TracksTable isLoading={isLoading} tracks={tracks} />
-        </div>
+          {(isLoading || (!isLoading && tracks?.length > 0)) && (
+            <TracksTable isLoading={isLoading} tracks={tracks} />
+          )}
+        </div>,
+      )}
+      {searchQuery && !isLoading && tracks?.length <= 0 && (
+        <SectionSubtitle>Nothing was found :( </SectionSubtitle>
       )}
     </Wrapper>
   );
