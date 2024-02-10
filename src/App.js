@@ -19,6 +19,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 // Import rc slider css
 import "rc-slider/assets/index.css";
+import Error from "pages/Error";
 
 function App() {
   const [state, dispatch] = useReducer(playerReducer, initialState);
@@ -37,6 +38,7 @@ function App() {
               <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
                 <Route path="/search" element={<Search />} />
+                <Route path="*" element={<Error />} />
               </Route>
             </Routes>
 

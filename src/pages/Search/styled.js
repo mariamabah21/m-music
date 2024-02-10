@@ -19,4 +19,7 @@ export const TableTitle = styled(SectionSubtitle)`
   margin-bottom: 30px;
 `;
 
+export const NotFoundText = styled(SectionSubtitle)`
+  color: ${({ theme }) => theme.colors.secondaryGrey};
+`;
 // ``

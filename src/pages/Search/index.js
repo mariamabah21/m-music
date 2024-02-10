@@ -5,8 +5,7 @@ import { useState, useEffect } from "react";
 import TracksTable from "components/TracksTable";
 import Input from "components/ui/Input";
 import { search } from "services/api";
-import { InputWrapper, TableTitle, Wrapper } from "./styled";
-import { SectionSubtitle, SectionTitle } from "components/ui/typography";
+import { InputWrapper, NotFoundText, TableTitle, Wrapper } from "./styled";
 
 function Search() {
   const [isLoading, setIsLoading] = useState(false);
@@ -15,6 +14,7 @@ function Search() {
 
   useEffect(() => {
     const loadData = async () => {
+      // TODO: Add debounce.
       try {
         setIsLoading(true);
         const data = await search(searchQuery);
@@ -40,16 +40,16 @@ function Search() {
           startIcon={SearchIcon}
         />
       </InputWrapper>
-      {searchQuery(
+      {searchQuery && (
         <div>
           <TableTitle>Results by: {searchQuery}</TableTitle>
           {(isLoading || (!isLoading && tracks?.length > 0)) && (
             <TracksTable isLoading={isLoading} tracks={tracks} />
           )}
-        </div>,
+        </div>
       )}
       {searchQuery && !isLoading && tracks?.length <= 0 && (
-        <SectionSubtitle>Nothing was found :( </SectionSubtitle>
+        <NotFoundText>Nothing was found :( </NotFoundText>
       )}
     </Wrapper>
   );
