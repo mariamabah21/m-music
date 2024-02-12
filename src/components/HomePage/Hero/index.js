@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { PlayerDispatchContext } from "context/playerContext";
 import { actions } from "context/actions";
 
-function Hero(tracks) {
+function Hero({ tracks }) {
   const dispatch = useContext(PlayerDispatchContext);
   const handlePlayClick = () => {
     dispatch({
@@ -32,7 +32,7 @@ function Hero(tracks) {
   );
 }
 
-Hero.prototype = {
+Hero.propTypes = {
   tracks: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,

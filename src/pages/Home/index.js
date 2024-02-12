@@ -20,12 +20,10 @@ function Home() {
 
   useEffect(() => {
     const loadData = async () => {
-      setIsLoading(true);
-      const data = await axios.get("/chart");
-      setChart(data.data);
-      setIsLoading(false);
       try {
         setIsLoading(true);
+        const data = await loadCharts();
+        setChart(data);
         const chart = await loadCharts();
         const radio = await loadTopRadioTracks();
         setChart(chart);
@@ -36,7 +34,6 @@ function Home() {
         setIsLoading(false);
       }
     };
-
     loadData();
   }, []);
 
