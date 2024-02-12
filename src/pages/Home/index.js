@@ -1,5 +1,5 @@
 import { Hero, Genres, Artists } from "components/HomePage";
-import { loadCharts } from "services/api";
+import { loadCharts, loadTopRadioTracks } from "services/api";
 import { GreyTitle, StyledAside, TrendsAndArtistsSection } from "./styled";
 import { SectionTitle } from "components/ui/typography";
 import { useEffect, useState } from "react";
@@ -14,6 +14,8 @@ import "swiper/css/pagination";
 
 function Home() {
   const [chart, setChart] = useState();
+  const [radio, setRadio] = useState();
+
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -24,8 +26,10 @@ function Home() {
       setIsLoading(false);
       try {
         setIsLoading(true);
-        const data = await loadCharts();
-        setChart(data);
+        const chart = await loadCharts();
+        const radio = await loadTopRadioTracks();
+        setChart(chart);
+        setRadio(radio);
       } catch (err) {
         toast.error(err.message);
       } finally {
@@ -38,7 +42,7 @@ function Home() {
 
   return (
     <main>
-      <Hero />
+      <Hero tracks={radio} />
       <Genres />
       <TrendsAndArtistsSection>
         <div>

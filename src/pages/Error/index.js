@@ -4,7 +4,6 @@ import { Wrapper } from "./styled";
 function Error() {
   return (
     <Wrapper>
-      {" "}
       <SectionTitle>Page was not found :( </SectionTitle>
     </Wrapper>
   );
