@@ -5,7 +5,7 @@ import Layout from "components/Layout";
 import { ThemeProvider } from "styled-components";
 import { SkeletonTheme } from "react-loading-skeleton";
 import { ToastContainer } from "react-toastify";
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import { initialState, playerReducer } from "context/playerReducer";
 import { PlayerContext, PlayerDispatchContext } from "context/playerContext";
 import { theme } from "styles/Theme";
@@ -21,9 +21,14 @@ import "react-toastify/dist/ReactToastify.css";
 // Import rc slider css
 import "rc-slider/assets/index.css";
 import Error from "pages/Error";
+import { setStorageValue } from "services/localStorage";
 
 function App() {
   const [state, dispatch] = useReducer(playerReducer, initialState);
+
+  useEffect(() => {
+    setStorageValue("savedTrackIds", state.savedTrackIds);
+  }, [state.savedTrackIds]);
 
   return (
     <PlayerContext.Provider value={state}>

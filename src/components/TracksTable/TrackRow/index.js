@@ -17,7 +17,7 @@ import {
 } from "./styled";
 import Skeleton from "react-loading-skeleton";
 
-function TrackRow({ track, index, onClick, isPlaying }) {
+function TrackRow({ track, index, onClick, isPlaying, handleSaveTrackClick }) {
   return (
     <StyledTrackRow key={track?.id} onClick={() => onClick(track)}>
       <TableData>
@@ -47,7 +47,7 @@ function TrackRow({ track, index, onClick, isPlaying }) {
       </TableData>
       <TableData>
         {track ? (
-          <StyledIconButton width={25} height={25}>
+          <StyledIconButton width={25} height={25} onClick={() => handleSaveTrackClick(track.id)}>
             <Heart />
           </StyledIconButton>
         ) : (
@@ -77,6 +77,7 @@ TrackRow.propTypes = {
   }),
   index: PropTypes.number,
   isPlaying: PropTypes.bool,
+  handleSaveTrackClick: PropTypes.func,
 };
 
 export default TrackRow;
