@@ -15,6 +15,7 @@ import {
 } from "./styled";
 import { toast } from "react-toastify";
 import { loadGenres } from "services/api";
+import { Link } from "react-router-dom";
 
 function Genres(withBackground) {
   const [genres, setGenres] = useState();
@@ -76,7 +77,9 @@ function Genres(withBackground) {
           {!isLoading &&
             genres?.map((genre) => (
               <SwiperSlide key={genre.id} style={{ width: "auto" }}>
-                <GenreCard name={genre.name} backgroundImage={genre.picture_medium} />
+                <Link to={`/genres/${genre.id}`}>
+                  <GenreCard name={genre.name} backgroundImage={genre.picture_medium} />
+                </Link>
               </SwiperSlide>
             ))}
         </Swiper>
