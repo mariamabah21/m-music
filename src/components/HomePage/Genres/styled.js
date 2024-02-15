@@ -1,5 +1,6 @@
 import IconButton from "components/ui/IconButton";
 import styled from "styled-components";
+import { device } from "styles/Breakpoints";
 
 export const Wrapper = styled.section`
   display: flex;
@@ -8,6 +9,9 @@ export const Wrapper = styled.section`
   gap: 35px;
   margin-bottom: 35px;
   overflow: hidden;
+  ${device.md} {
+    gap: 20px;
+  }
 `;
 
 export const TitleRow = styled.div`
@@ -21,6 +25,9 @@ export const ButtonsWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+  ${device.md} {
+    gap: 8px;
+  }
 `;
 export const GenresWrapper = styled.div`
   display: flex;
@@ -29,6 +36,9 @@ export const GenresWrapper = styled.div`
   width: 100%;
   min-height: 116px;
   gap: 20px;
+  ${device.md} {
+    gap: 9px;
+  }
 `;
 
 export const GenreSkeletonWrapper = styled.div`

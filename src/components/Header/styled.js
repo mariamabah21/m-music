@@ -10,4 +10,5 @@ export const Wrapper = styled.header`
 export const LogoWrapper = styled.div`
   display: flex;
   gap: 20px;
+  align-items: center;
 `;
