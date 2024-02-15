@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import DesktopRadioImage from "assets/images/Radio-desktop.png";
 import TabletRadioImage from "assets/images/Radio-tablet.png";
-import { PlayButton, TextWrapper, Wrapper, HeroText, HeroImage } from "./styled";
-import { ButtonText, MainTitle } from "components/ui/typography";
+import { PlayButton, TextWrapper, Wrapper, HeroText, HeroImage, HeroTitleText } from "./styled";
+import { ButtonText } from "components/ui/typography";
 import { Play } from "components/ui/Icons";
 import { useContext } from "react";
 import { PlayerDispatchContext } from "context/playerContext";
@@ -24,7 +24,7 @@ function Hero({ tracks }) {
   return (
     <Wrapper>
       <TextWrapper>
-        <MainTitle>Radio</MainTitle>
+        <HeroTitleText>Radio</HeroTitleText>
         <HeroText>Pick your todays mood. We will play a perfect mix!</HeroText>
         <PlayButton disabled={!tracks || tracks.length <= 0} onClick={handlePlayClick}>
           <Play />

@@ -13,6 +13,11 @@ export const SectionTitle = styled.h2`
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   font-size: 35px;
   line-height: 52px;
+
+  ${device.md} {
+    font-size: 22px;
+    line-height: 33px;
+  }
 `;
 export const SectionSubtitle = styled.h3`
   font-family: ${({ theme }) => theme.fonts.poppins}, sans-serif;
@@ -34,7 +39,12 @@ export const Subtext = styled.span`
   font-family: ${({ theme }) => theme.fonts.inter}, sans-serif;
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   font-size: 20px;
-  line-height: 24px;
+  line-height: 20px;
+
+  ${device.md} {
+    font-size: 18px;
+    line-height: 22px;
+  }
 `;
 export const ButtonText = styled.span`
   font-family: ${({ theme }) => theme.fonts.inter}, sans-serif;

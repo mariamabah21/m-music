@@ -7,8 +7,11 @@ import Skeleton from "react-loading-skeleton";
 import { useContext } from "react";
 import { PlayerContext, PlayerDispatchContext } from "context/playerContext";
 import { actions } from "context/actions";
+import { useWindowSize } from "hooks/useWindowSize";
+import { breakpoints } from "styles/Breakpoints";
 
 function TracksTable({ tracks, isLoading }) {
+  const { width } = useWindowSize();
   const dispatch = useContext(PlayerDispatchContext);
   const { track, isPlaying, savedTrackIds } = useContext(PlayerContext);
 
@@ -38,12 +41,16 @@ function TracksTable({ tracks, isLoading }) {
           <TableHeading>
             <Subtext> {isLoading ? <Skeleton /> : "Song name"} </Subtext>
           </TableHeading>
-          <TableHeadingTime>
-            <Subtext> {isLoading ? <Skeleton /> : "Time"} </Subtext>
-          </TableHeadingTime>
-          <TableHeading>
-            <Subtext> {isLoading ? <Skeleton /> : "Album name"} </Subtext>
-          </TableHeading>
+          {width > breakpoints.md && (
+            <TableHeadingTime>
+              <Subtext> {isLoading ? <Skeleton /> : "Time"} </Subtext>
+            </TableHeadingTime>
+          )}
+          {width > breakpoints.md && (
+            <TableHeading>
+              <Subtext> {isLoading ? <Skeleton /> : "Album name"} </Subtext>
+            </TableHeading>
+          )}
           <TableHeading>
             <Subtext> {isLoading ? <Skeleton width={70} /> : "Action"} </Subtext>
           </TableHeading>
@@ -63,10 +70,12 @@ function TracksTable({ tracks, isLoading }) {
               index={index}
               handleSaveTrackClick={handleSaveTrackClick}
               isSaved={savedTrackIds.includes(currentTrack.id)}
+              screenWidth={width}
             />
           ))}
 
-        {isLoading && [...Array(9).keys()].map((num) => <TrackRow key={num} index={num} />)}
+        {isLoading &&
+          [...Array(9).keys()].map((num) => <TrackRow key={num} index={num} screenWidth={width} />)}
       </tbody>
     </Table>
   );
