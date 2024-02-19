@@ -15,7 +15,6 @@ import "swiper/css/pagination";
 function Home() {
   const [chart, setChart] = useState();
   const [radio, setRadio] = useState();
-
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {

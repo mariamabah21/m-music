@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { ArtistName, Image, Wrapper } from "./styled";
+import { useWindowSize } from "hooks/useWindowSize";
 
 function ArtistCard({ image, name }) {
   return (
