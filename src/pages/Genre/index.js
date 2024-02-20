@@ -17,6 +17,8 @@ function Genre() {
       try {
         setIsLoading(true);
         const genre = await loadGenre(genreId);
+        console.log(genre);
+
         setGenre(genre);
       } catch (err) {
         toast.error(err.message);
@@ -29,13 +31,13 @@ function Genre() {
 
   return (
     <div>
-      {/*<TextWrapper>
+      {/* <TextWrapper>
         <MainTitle> {genre.name}</MainTitle>
         <SongsCountWrapper>
           <Music />
           <SmallText> </SmallText>
         </SongsCountWrapper>
-  </TextWrapper>*/}
+      </TextWrapper>*/}
       <TracksTable isLoading={isLoading} tracks={genre?.tracks} />
     </div>
   );
@@ -43,4 +45,4 @@ function Genre() {
 
 export default Genre;
 
-// {/*
+// {/*    ///   */}

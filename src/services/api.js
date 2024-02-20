@@ -51,9 +51,12 @@ export async function loadGenre(genreId) {
 
     if (!genreData?.data || !radiosData?.data) throw Error();
 
-    const randomIndex = Math.floor(Math.random() * radiosData.data.data.length);
+    const radios = radiosData.data.data;
+    console.log(radios);
+    const randomIndex = Math.floor(Math.random() * radios.length);
 
-    const tracksData = await axios(radiosData[randomIndex].tracklist.replace(API_BASE_URL, ""));
+    const tracksData = await axios(radios[randomIndex].tracklist.replace(API_BASE_URL, ""));
+
     return {
       genre: genreData.data,
       tracks: tracksData.data.data,
