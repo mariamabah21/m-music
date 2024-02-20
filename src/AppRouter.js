@@ -16,7 +16,6 @@ function AppRouter(props) {
           <Route index element={<Home />} />
           <Route path="/search" element={<Search />} />
           <Route path="/genre" element={<Genre />} />
-
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>
