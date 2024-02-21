@@ -26,6 +26,8 @@ import { useWindowSize } from "hooks/useWindowSize";
 import { breakpoints } from "styles/Breakpoints";
 
 function Player() {
+  const { width } = useWindowSize();
+
   const dispatch = useContext(PlayerDispatchContext);
   const { track, isPlaying } = useContext(PlayerContext);
 
@@ -33,11 +35,17 @@ function Player() {
     currentTime: 0,
     duration: 0,
     volume: 0.7,
+    isOpened: false,
   });
 
   const audioRef = useRef();
 
   const togglePlay = () => dispatch({ type: actions.TOGGLE_PLAY });
+  const toggleOpen = () => {
+    if (width > breakpoints.lg && !playerState.isOpened) return;
+
+    setPlayerState((prev) => ({ ...prev, isOpened: !prev.isOpened }));
+  };
 
   const toggleVolume = () => {
     const newVolume = playerState.volume > 0 ? 0 : 1;
@@ -86,7 +94,7 @@ function Player() {
   }
 
   return (
-    <Wrapper>
+    <Wrapper onClick={playerState.isOpened ? null : toggleOpen} open={playerState.isOpened}>
       <audio
         ref={audioRef}
         src={track.preview}
@@ -106,6 +114,8 @@ function Player() {
         onTrackTimeDrag={onTrackTimeDrag}
         toggleVolume={toggleVolume}
         onVolumeChange={onVolumeChange}
+        toggleOpen={toggleOpen}
+        width={width}
       />
     </Wrapper>
   );
@@ -121,8 +131,9 @@ function PlayerLayout({
   onTrackTimeDrag,
   toggleVolume,
   onVolumeChange,
+  toggleOpen,
+  width,
 }) {
-  const { width } = useWindowSize();
   if (width < breakpoints.lg) {
     return (
       <ContentWrapper display="flex" items="center" direction="column" gap={14}>
@@ -261,14 +272,16 @@ PlayerLayout.propTypes = {
   handleNextSong: PropTypes.func,
   togglePlay: PropTypes.func,
   isPlaying: PropTypes.bool,
-  onTrackTimeDrag: PropTypes.func,
-  toggleVolume: PropTypes.func,
-  onVolumeChange: PropTypes.func,
   playerState: PropTypes.shape({
     currentTime: PropTypes.num,
     duration: PropTypes.num,
     volume: PropTypes.string,
   }),
+  onTrackTimeDrag: PropTypes.func,
+  toggleVolume: PropTypes.func,
+  onVolumeChange: PropTypes.func,
+  toggleOpen: PropTypes.func,
+  width: PropTypes.number,
 };
 
 export default Player;

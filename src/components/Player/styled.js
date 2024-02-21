@@ -1,4 +1,4 @@
-import { MOBILE_PLAYER_HEIGHT, PLAYER_HEIGHT } from "common/constants";
+import { MOBILE_HEADER_HEIGHT, MOBILE_PLAYER_HEIGHT, PLAYER_HEIGHT } from "common/constants";
 import { Subtext, Text } from "components/ui/typography";
 import styled from "styled-components";
 import { device } from "styles/Breakpoints";
@@ -6,16 +6,23 @@ import { device } from "styles/Breakpoints";
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
+  align-items: ${(props) => (props.open ? "flex-start" : "center")};
   height: ${PLAYER_HEIGHT}px;
   background-color: ${({ theme }) => theme.colors.secondaryBlack};
+  background-color: ${({ theme, open }) =>
+    open ? theme.colors.black : theme.colors.secondaryBlack};
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   z-index: ${({ theme }) => theme.zIndex["30"]};
+
   ${device.lg} {
-    height: ${MOBILE_PLAYER_HEIGHT}px;
-    border-top-right-radius: 25px;
+    // height: ${MOBILE_PLAYER_HEIGHT}px;
+    height: ${(props) =>
+      props.open ? `calc(100vh - ${MOBILE_HEADER_HEIGHT}px)` : `${MOBILE_PLAYER_HEIGHT}px`};
+    border-top-right-radius: ${(props) => (props.open ? 0 : "25px")};
+    border-top-left-radius: ${(props) => (props.open ? 0 : "25px")};
   }
 `;
 
@@ -27,6 +34,9 @@ export const TrackInfoWrapper = styled.div`
 
   @media (max-width: 1400px) {
     min-width: 280px;
+  }
+  ${device.lg} {
+    gap: 15px;
   }
 `;
 
@@ -45,6 +55,11 @@ export const TrackImage = styled.img`
   height: 65px;
   width: 65px;
   border-radius: 15px;
+
+  ${device.md} {
+    height: 45px;
+    width: 45px;
+  }
 `;
 
 export const TrackTitle = styled(Text)`
@@ -110,4 +125,9 @@ export const VolumeWrapper = styled.div`
   ${device.xl} {
     margin-left: 60px;
   }
+`;
+
+export const BackButton = styled.button`
+  border: none;
+  background: none;
 `;
