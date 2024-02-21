@@ -15,6 +15,7 @@ export const Wrapper = styled.div`
   z-index: ${({ theme }) => theme.zIndex["30"]};
   ${device.lg} {
     height: ${MOBILE_PLAYER_HEIGHT}px;
+    border-top-right-radius: 25px;
   }
 `;
 
@@ -34,6 +35,10 @@ export const TrackInfoTextWrapper = styled.div`
   gap: 10px;
   flex-direction: column;
   padding-right: 15px;
+
+  ${device.lg} {
+    gap: 2px;
+  }
 `;
 
 export const TrackImage = styled.img`
@@ -66,18 +71,33 @@ export const ControlsWrapper = styled.div`
   align-items: center;
   gap: 34px;
 `;
+export const MobileTrackRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`;
 
 export const ProgressWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-left: 60px;
   width: 100%;
+
+  ${device.lg} {
+    margin-left: 0;
+  }
 `;
 
 export const TrackTime = styled(Subtext)`
   width: 80px;
   margin: 0 20px;
   color: ${(props) => (props.grey ? props.theme.colors.secondaryGrey : "inherit")};
+
+  ${device.lg} {
+    margin: ${(props) => (props.last ? "0 0 0 20px" : 0)};
+    text-align: ${(props) => (props.last ? "right" : "inherit")};
+  }
 `;
 
 export const VolumeWrapper = styled.div`

@@ -14,6 +14,7 @@ import {
   TrackTime,
   VolumeWrapper,
   TrackTitle,
+  MobileTrackRow,
 } from "./styled";
 import { ContentWrapper } from "components/Layout";
 import { Pause, Play, SkipLeft, SkipRight, Volume } from "components/ui/Icons";
@@ -21,6 +22,8 @@ import IconButton from "components/ui/IconButton";
 import { theme } from "styles/Theme";
 import { formatSecondsToMSS } from "utils/time";
 import { PlayerContext, PlayerDispatchContext } from "context/playerContext";
+import { useWindowSize } from "hooks/useWindowSize";
+import { breakpoints } from "styles/Breakpoints";
 
 function Player() {
   const dispatch = useContext(PlayerDispatchContext);
@@ -119,6 +122,53 @@ function PlayerLayout({
   toggleVolume,
   onVolumeChange,
 }) {
+  const { width } = useWindowSize();
+  if (width < breakpoints.lg) {
+    return (
+      <ContentWrapper display="flex" items="center" direction="column" gap={14}>
+        <MobileTrackRow>
+          <TrackInfoWrapper>
+            <TrackImage src={track?.album?.cover} alt={`${track?.album?.title}'s cover`} />
+            <TrackInfoTextWrapper>
+              <TrackTitle>{track.title}</TrackTitle>
+              <ArtistName>{track.title}</ArtistName>
+            </TrackInfoTextWrapper>
+          </TrackInfoWrapper>
+
+          <IconButton onClick={togglePlay} width={55} height={55} withBackground>
+            {isPlaying ? <Pause /> : <Play />}
+          </IconButton>
+        </MobileTrackRow>
+        <ProgressWrapper>
+          <TrackTime>{formatSecondsToMSS(playerState.currentTime)}</TrackTime>
+          <Slider
+            onChange={onTrackTimeDrag}
+            step={0.2}
+            min={0}
+            max={playerState.duration}
+            value={playerState.currentTime}
+            style={{ padding: "3px 0" }}
+            trackStyle={{
+              height: 8,
+              backgroundColor: theme.colors.white,
+            }}
+            railStyle={{
+              height: 8,
+              backgroundColor: theme.colors.darkGrey,
+            }}
+            handleStyle={{
+              border: "none",
+              backgroundColor: theme.colors.white,
+              marginTop: -3,
+            }}
+          />
+          <TrackTime last={1} grey={1}>
+            {formatSecondsToMSS(playerState.duration)}
+          </TrackTime>
+        </ProgressWrapper>
+      </ContentWrapper>
+    );
+  }
   return (
     <ContentWrapper display="flex" items="center">
       <TrackInfoWrapper>
