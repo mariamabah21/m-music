@@ -15,6 +15,7 @@ import {
   VolumeWrapper,
   TrackTitle,
   MobileTrackRow,
+  BackButton,
 } from "./styled";
 import { ContentWrapper } from "components/Layout";
 import { Pause, Play, SkipLeft, SkipRight, Volume } from "components/ui/Icons";
@@ -24,10 +25,11 @@ import { formatSecondsToMSS } from "utils/time";
 import { PlayerContext, PlayerDispatchContext } from "context/playerContext";
 import { useWindowSize } from "hooks/useWindowSize";
 import { breakpoints } from "styles/Breakpoints";
+import { useLocation } from "react-router-dom";
 
 function Player() {
+  const location = useLocation();
   const { width } = useWindowSize();
-
   const dispatch = useContext(PlayerDispatchContext);
   const { track, isPlaying } = useContext(PlayerContext);
 
@@ -88,6 +90,10 @@ function Player() {
       audioRef.current.pause();
     }
   }, [audioRef, track, isPlaying]);
+  // copy!
+  useEffect(() => {
+    if (playerState.isOpened) toggleOpen();
+  }, [location]);
 
   if (!track) {
     return null;
@@ -116,6 +122,7 @@ function Player() {
         onVolumeChange={onVolumeChange}
         toggleOpen={toggleOpen}
         width={width}
+        open={playerState.isOpened}
       />
     </Wrapper>
   );
@@ -133,7 +140,56 @@ function PlayerLayout({
   onVolumeChange,
   toggleOpen,
   width,
+  open,
 }) {
+  if (open) {
+    return (
+      <ContentWrapper display="flex" items="center" direction="column" gap={14}>
+        <BackButton onClick={toggleOpen}>Back</BackButton>
+        <MobileTrackRow>
+          <TrackInfoWrapper>
+            <TrackImage src={track?.album?.cover} alt={`${track?.album?.title}'s cover`} />
+            <TrackInfoTextWrapper>
+              <TrackTitle>{track.title}</TrackTitle>
+              <ArtistName>{track.title}</ArtistName>
+            </TrackInfoTextWrapper>
+          </TrackInfoWrapper>
+
+          <IconButton onClick={togglePlay} width={55} height={55} withBackground>
+            {isPlaying ? <Pause /> : <Play />}
+          </IconButton>
+        </MobileTrackRow>
+        <ProgressWrapper>
+          <TrackTime>{formatSecondsToMSS(playerState.currentTime)}</TrackTime>
+          <Slider
+            onChange={onTrackTimeDrag}
+            step={0.2}
+            min={0}
+            max={playerState.duration}
+            value={playerState.currentTime}
+            style={{ padding: "3px 0" }}
+            trackStyle={{
+              height: 8,
+              backgroundColor: theme.colors.white,
+            }}
+            railStyle={{
+              height: 8,
+              backgroundColor: theme.colors.darkGrey,
+            }}
+            handleStyle={{
+              border: "none",
+              backgroundColor: theme.colors.white,
+              marginTop: -3,
+            }}
+          />
+          <TrackTime last={1} grey={1}>
+            {formatSecondsToMSS(playerState.duration)}
+          </TrackTime>
+        </ProgressWrapper>
+      </ContentWrapper>
+    );
+  }
+
   if (width < breakpoints.lg) {
     return (
       <ContentWrapper display="flex" items="center" direction="column" gap={14}>
@@ -282,6 +338,7 @@ PlayerLayout.propTypes = {
   onVolumeChange: PropTypes.func,
   toggleOpen: PropTypes.func,
   width: PropTypes.number,
+  open: PropTypes.bool,
 };
 
 export default Player;

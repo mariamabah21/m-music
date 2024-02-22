@@ -130,4 +130,9 @@ export const VolumeWrapper = styled.div`
 export const BackButton = styled.button`
   border: none;
   background: none;
+  color: ${({ theme }) => theme.colors.lightGrey};
+  font-size: 18px;
+  line-height: 27px;
+  padding: 0 10px;
+  font-weight: ${({ theme }) => theme.fontWeights.semibold};
 `;
