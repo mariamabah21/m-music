@@ -62,6 +62,12 @@ export const TrackImage = styled.img`
   }
 `;
 
+export const BigTrackImage = styled.img`
+  height: 311px;
+  width: 311px;
+  margin: 0 auto 37px;
+`;
+
 export const TrackTitle = styled(Text)`
   font-weight: normal;
   display: -webkit-box;
@@ -85,6 +91,7 @@ export const ControlsWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 34px;
+  margin: ${(props) => (props.open ? "0 auto" : 0)};
 `;
 export const MobileTrackRow = styled.div`
   display: flex;
@@ -100,7 +107,7 @@ export const ProgressWrapper = styled.div`
   width: 100%;
 
   ${device.lg} {
-    margin-left: 0;
+    margin: ${(props) => (props.open ? "40px 0" : 0)};
   }
 `;
 
@@ -123,7 +130,8 @@ export const VolumeWrapper = styled.div`
   min-width: 180px;
 
   ${device.xl} {
-    margin-left: 60px;
+    margin: ${(props) => (props.open ? "48 auto 0" : "0 0 0 60px")};
+    width: ${(props) => (props.open ? "65%" : " auto")};
   }
 `;
 
@@ -133,6 +141,8 @@ export const BackButton = styled.button`
   color: ${({ theme }) => theme.colors.lightGrey};
   font-size: 18px;
   line-height: 27px;
-  padding: 0 10px;
+  padding: 10px 0px;
+  margin-bottom: 28px 0px 30px;
   font-weight: ${({ theme }) => theme.fontWeights.semibold};
+  cursor: pointer;
 `;
