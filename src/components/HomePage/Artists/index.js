@@ -6,6 +6,7 @@ import { Wrapper, ArtistsWrapper, ArtistSkeletonWrapper, ArtistLoaderWrapper } f
 import ArtistCard from "./ArtistCard";
 import { useWindowSize } from "hooks/useWindowSize";
 import { breakpoints } from "styles/Breakpoints";
+import { Link } from "react-router-dom";
 
 function Artists({ isLoading, artists }) {
   const { width } = useWindowSize();
@@ -22,15 +23,23 @@ function Artists({ isLoading, artists }) {
                 height={isMobileLayout ? 75 : 95}
                 width={isMobileLayout ? 75 : 95}
                 circle
+                style={{ margin: "0 auto" }}
               />
               <Skeleton height={isMobileLayout ? 19 : 27} />
             </ArtistLoaderWrapper>
           ))}
-        <Swiper slidesPerView="auto" spaceBetween={20} modules={[Pagination]}>
+        <Swiper
+          slidesPerView="auto"
+          spaceBetween={20}
+          modules={[Pagination]}
+          style={{ marginLeft: 0 }}
+        >
           {!isLoading &&
-            artists?.map((genre) => (
-              <SwiperSlide key={genre.id} style={{ width: "auto" }}>
-                <ArtistCard name={genre.name} image={genre.picture_medium} />
+            artists?.map((artist) => (
+              <SwiperSlide key={artist.id} style={{ width: "auto" }}>
+                <Link to={`/artists/${artist.id}`}>
+                  <ArtistCard name={artist.name} image={artist.picture_medium} />
+                </Link>
               </SwiperSlide>
             ))}
         </Swiper>
