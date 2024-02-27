@@ -32,20 +32,18 @@ function Genre() {
   }, []);
 
   return (
-    <div>
-      <Wrapper>
-        <TextWrapper>
-          <MainTitle> {genre?.genre?.name || <Skeleton width={200} />}</MainTitle>
-          <SongsCountWrapper>
-            <Music color={theme.colors.secondaryGrey} />
-            <SmallText>
-              {isLoading ? <Skeleton width={40} /> : `${genre?.tracks?.length} songs`}
-            </SmallText>
-          </SongsCountWrapper>
-        </TextWrapper>
-        <TracksTable isLoading={isLoading} tracks={genre?.tracks} />
-      </Wrapper>
-    </div>
+    <Wrapper>
+      <TextWrapper>
+        <MainTitle> {genre?.genre?.name || <Skeleton width={200} />}</MainTitle>
+        <SongsCountWrapper>
+          <Music color={theme.colors.secondaryGrey} />
+          <SmallText>
+            {isLoading ? <Skeleton width={40} /> : `${genre?.tracks?.length} songs`}
+          </SmallText>
+        </SongsCountWrapper>
+      </TextWrapper>
+      <TracksTable isLoading={isLoading} tracks={genre?.tracks} />
+    </Wrapper>
   );
 }
 
