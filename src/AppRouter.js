@@ -13,12 +13,12 @@ function AppRouter(props) {
   return (
     <ErrorBoundary fallback={<Error isErrorPage />}>
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/genres:genreId" element={<Genre />} />
-          <Route path="/artists:artistId" element={<Artist />} />
-          <Route path="*" element={<Error />} />
+        <Route exact path="/" element={<Layout />}>
+          <Route exact index element={<Home />} />
+          <Route exact path="/search" element={<Search />} />
+          <Route exact path="/genres:genreId" element={<Genre />} />
+          <Route exact path="/artists:artistId" element={<Artist />} />
+          <Route exact path="*" element={<Error />} />
         </Route>
       </Routes>
     </ErrorBoundary>

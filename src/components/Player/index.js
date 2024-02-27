@@ -181,6 +181,7 @@ function PlayerLayout({
             {isPlaying ? <Pause /> : <Play />}
           </IconButton>
         </MobileTrackRow>
+        
         <ProgressWrapper onClick={(event) => event.stopPropagation()}>
           <TrackTime>{formatSecondsToMSS(playerState.currentTime)}</TrackTime>
           <Slider
