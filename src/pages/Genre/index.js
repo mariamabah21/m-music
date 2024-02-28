@@ -19,7 +19,7 @@ function Genre() {
       try {
         setIsLoading(true);
         const genre = await loadGenre(genreId);
-        console.log(genre);
+        console.log(genre.genre.name);
 
         setGenre(genre);
       } catch (err) {
@@ -30,24 +30,23 @@ function Genre() {
     };
     loadData();
   }, []);
+  console.log(genre);
 
   return (
-    <div>hi</div>
-    // <Wrapper>
-    // <TextWrapper>
-    // <MainTitle> {genre?.genre?.name || <Skeleton width={200} />}</MainTitle>
-    // <SongsCountWrapper>
-    // <Music color={theme.colors.secondaryGrey} />
-    //<SmallText>
-    // {isLoading ? <Skeleton width={40} /> : `${genre?.tracks?.length} songs`}
-    //</SmallText>
-    //</SongsCountWrapper>
-    //</TextWrapper>
-    //<TracksTable isLoading={isLoading} tracks={genre?.tracks} />
-    //</Wrapper>
+    <Wrapper>
+      <TextWrapper>
+        <MainTitle> {genre?.genre?.name || <Skeleton width={200} />}</MainTitle>{" "}
+        <SongsCountWrapper>
+          <Music color={theme.colors.secondaryGrey} />
+          <SmallText>
+            {isLoading ? <Skeleton width={40} /> : `${genre?.tracks?.length} songs`}
+          </SmallText>
+        </SongsCountWrapper>
+      </TextWrapper>
+      <TracksTable isLoading={isLoading} tracks={genre?.tracks} />
+    </Wrapper>
   );
 }
-//console.log(Genre);
 
 export default Genre;
 
