@@ -52,7 +52,7 @@ function Player() {
   return (
     <Wrapper
       onClick={playerState.isOpen ? null : toggleOpen}
-      full={playerState.isOpen}
+      //full={playerState.isOpen}
       open={playerState.isOpen}
     >
       <audio
@@ -181,7 +181,7 @@ function PlayerLayout({
             {isPlaying ? <Pause /> : <Play />}
           </IconButton>
         </MobileTrackRow>
-        
+
         <ProgressWrapper onClick={(event) => event.stopPropagation()}>
           <TrackTime>{formatSecondsToMSS(playerState.currentTime)}</TrackTime>
           <Slider
@@ -269,11 +269,10 @@ function usePlayer({ width }) {
   });
   const audioRef = useRef();
 
-  const togglePlay = () => {
+  const togglePlay = () =>
     dispatch({
       type: actions.TOGGLE_PLAY,
     });
-  };
 
   const toggleOpen = () => {
     if (width > breakpoints.lg && !playerState.isOpen) return;
