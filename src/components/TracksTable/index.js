@@ -11,7 +11,6 @@ import { useWindowSize } from "hooks/useWindowSize";
 import { breakpoints } from "styles/Breakpoints";
 
 function TracksTable({ tracks, isLoading }) {
-  // [] OR {} ??
   const { width } = useWindowSize();
   const dispatch = useContext(PlayerDispatchContext);
   const { track, isPlaying, savedTrackIds } = useContext(PlayerContext);

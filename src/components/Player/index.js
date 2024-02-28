@@ -51,9 +51,9 @@ function Player() {
 
   return (
     <Wrapper
-      onClick={playerState.isOpen ? null : toggleOpen}
+      onClick={playerState.isOpened ? null : toggleOpen}
       //full={playerState.isOpen}
-      open={playerState.isOpen}
+      open={playerState.isOpened}
     >
       <audio
         ref={audioRef}
@@ -76,7 +76,7 @@ function Player() {
         onVolumeChange={onVolumeChange}
         toggleOpen={toggleOpen}
         width={width}
-        open={playerState.isOpen}
+        open={playerState.isOpened}
       />
     </Wrapper>
   );
@@ -265,7 +265,7 @@ function usePlayer({ width }) {
     currentTime: 0,
     duration: 0,
     volume: 0.1,
-    isOpen: false,
+    isOpened: false,
   });
   const audioRef = useRef();
 
@@ -275,8 +275,8 @@ function usePlayer({ width }) {
     });
 
   const toggleOpen = () => {
-    if (width > breakpoints.lg && !playerState.isOpen) return;
-    setPlayerState((prev) => ({ ...prev, isOpen: !prev.isOpen }));
+    if (width > breakpoints.lg && !playerState.isOpened) return;
+    setPlayerState((prev) => ({ ...prev, isOpened: !prev.isOpened }));
   };
 
   const handleNextSong = () => {
@@ -327,21 +327,24 @@ function usePlayer({ width }) {
   }, [isPlaying, track, audioRef]);
 
   useEffect(() => {
-    if (playerState.isOpen) toggleOpen();
+    if (playerState.isOpened) toggleOpen();
   }, [location]);
-
+  // 3ero
   useEffect(() => {
-    if (playerState.isOpen) {
+    if (playerState.isOpened) {
       window.scroll(0, 0);
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "scroll";
     }
-  }, [playerState.isOpen]);
+  }, [playerState.isOpened]);
 
-  if (width > breakpoints.lg && playerState.isOpen) {
-    toggleOpen();
-  }
+  // 4o
+  useEffect(() => {
+    if (width > breakpoints.lg && playerState.isOpened) {
+      toggleOpen();
+    }
+  }, [width]);
 
   useEffect(() => {
     if (!audioRef?.current) return;

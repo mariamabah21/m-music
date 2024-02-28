@@ -4,7 +4,6 @@ const API_BASE_URL = "https://api.deezer.com";
 const API_CHART_URL = "/chart";
 const API_ALL_GENRES_URL = "/genre";
 const API_ALL_ARTISTS_URL = "/artist";
-
 const API_SEARCH_URL = "/search";
 const API_TOP_TRACKS_RADIO_URL = "/radio/37151/tracks";
 // "https://api.deezer.com/radio/37151/tracks"

@@ -29,6 +29,7 @@ export const TextWrapper = styled.div`
 export const ArtistInfoWrapper = styled.div`
   display: flex;
   gap: 50px;
+
   ${device.md} {
     flex-direction: column;
     gap: 15px;
@@ -51,4 +52,8 @@ export const SongsCountWrapper = styled.div`
   align-items: center;
   gap: 12px;
   color: ${({ theme }) => theme.colors.secondaryGrey};
+`;
+
+export const ArtistImageLoaderWrapper = styled.div`
+  display: flex;
 `;
