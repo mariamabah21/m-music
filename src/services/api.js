@@ -7,6 +7,7 @@ const API_ALL_ARTISTS_URL = "/artist";
 const API_SEARCH_URL = "/search";
 const API_TOP_TRACKS_RADIO_URL = "/radio/37151/tracks";
 // "https://api.deezer.com/radio/37151/tracks"
+
 export async function loadTopRadioTracks() {
   try {
     const data = await axios(`${API_TOP_TRACKS_RADIO_URL}?limit=100`);
@@ -71,10 +72,12 @@ export async function loadArtist(artistId) {
       axios.get(`${API_ALL_ARTISTS_URL}/${artistId}`),
       axios.get(`${API_ALL_ARTISTS_URL}/${artistId}/top`),
     ]);
+
     if (!artistData?.data || !tracksData?.data?.data) throw Error();
+    // maybe ad one more data?
 
     return {
-      genre: artistData.data,
+      artist: artistData.data,
       tracks: tracksData.data.data,
     };
   } catch (err) {

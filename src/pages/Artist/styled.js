@@ -20,16 +20,12 @@ export const Wrapper = styled.div`
 export const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
-
-  ${device.md} {
-    gap: 5px;
-  }
+  gap: 5px;
 `;
+
 export const ArtistInfoWrapper = styled.div`
   display: flex;
   gap: 50px;
-
   ${device.md} {
     flex-direction: column;
     gap: 15px;
@@ -42,7 +38,7 @@ export const ArtistImage = styled.img`
   border-radius: 25px;
   object-fit: cover;
   ${device.md} {
-    height: 175px;
+    height: 176px;
     width: 100%;
   }
 `;

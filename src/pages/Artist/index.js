@@ -1,21 +1,22 @@
-import { useEffect, useState } from "react";
-import Skeleton from "react-loading-skeleton";
-import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
 import TracksTable from "components/TracksTable";
-import { Music } from "components/ui/Icons";
-import { MainTitle, SectionTitle, SmallText } from "components/ui/typography";
-import { loadArtist } from "services/api";
-import { theme } from "styles/Theme";
-import { breakpoints } from "styles/Breakpoints";
-import { useWindowSize } from "hooks/useWindowSize";
 import {
   ArtistImage,
   ArtistImageLoaderWrapper,
   ArtistInfoWrapper,
+  SongsCountWrapper,
   TextWrapper,
   Wrapper,
 } from "./styled";
+import { Music } from "components/ui/Icons";
+import { MainTitle, SectionTitle, SmallText } from "components/ui/typography";
+import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import { loadArtist } from "services/api";
+import { theme } from "styles/Theme";
+import { breakpoints } from "styles/Breakpoints";
+import { useWindowSize } from "hooks/useWindowSize";
 
 function Artist() {
   const { width } = useWindowSize();
@@ -35,7 +36,6 @@ function Artist() {
         setIsLoading(false);
       }
     };
-
     loadData();
   }, []);
 
@@ -53,17 +53,18 @@ function Artist() {
           />
         )}
         <TextWrapper>
-          <MainTitle>{artist?.artist?.name || <Skeleton width={200} />}</MainTitle>
-
-          <Music color={theme.colors.secondaryGrey} />
-          <SmallText>
-            {isLoading ? <Skeleton width={40} /> : `${artist?.artist?.nb_fan} Fans`}
-          </SmallText>
+          <MainTitle> {artist?.artist?.name || <Skeleton width={200} />}</MainTitle>
+          <SongsCountWrapper>
+            <Music color={theme.colors.secondaryGrey} />
+            <SmallText>
+              {isLoading ? <Skeleton width={40} /> : `${artist?.artist?.nb_fan} Fans`}
+            </SmallText>
+          </SongsCountWrapper>
         </TextWrapper>
       </ArtistInfoWrapper>
       <div>
-        <SectionTitle>Top Tracks</SectionTitle>
-        <TracksTable isLoading={isLoading} tracks={artist?.tracks} />
+        <SectionTitle>Top Tracks </SectionTitle>
+        <TracksTable isLoading={isLoading} tracks={artist?.tracks} />{" "}
       </div>
     </Wrapper>
   );
@@ -71,4 +72,4 @@ function Artist() {
 
 export default Artist;
 
-// {/*    ///   */} ||  ` `
+// {/*    ///   */} ||

@@ -18,6 +18,7 @@ function AppRouter(props) {
           <Route path="/search" element={<Search />} />
           <Route path="/genres/:genreId" element={<Genre />} />
           <Route path="/artists/:artistId" element={<Artist />} />
+
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>
