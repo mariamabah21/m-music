@@ -340,11 +340,10 @@ function usePlayer({ width }) {
   }, [playerState.isOpened]);
 
   // 4o
-  useEffect(() => {
-    if (width > breakpoints.lg && playerState.isOpened) {
-      toggleOpen();
-    }
-  }, [width]);
+
+  if (width > breakpoints.lg && playerState.isOpened) {
+    toggleOpen();
+  }
 
   useEffect(() => {
     if (!audioRef?.current) return;

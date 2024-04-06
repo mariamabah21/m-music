@@ -11,11 +11,11 @@ import TracksTable from "components/TracksTable";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
+import { useLoadData } from "hooks/useLoadData";
 
 function Home() {
-  const [chart, setChart] = useState();
-  const [radio, setRadio] = useState();
-  const [isLoading, setIsLoading] = useState(false);
+  const [data, isLoading] = useLoadData(() => Promise.all([loadCharts(), loadTopRadioTracks()]));
+  const [chart, radio] = data || [];
 
   useEffect(() => {
     const loadData = async () => {
