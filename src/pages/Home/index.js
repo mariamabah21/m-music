@@ -2,8 +2,7 @@ import { Hero, Genres, Artists } from "components/HomePage";
 import { loadCharts, loadTopRadioTracks } from "services/api";
 import { GreyTitle, StyledAside, TrendsAndArtistsSection } from "./styled";
 import { SectionTitle } from "components/ui/typography";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 
 import TracksTable from "components/TracksTable";
@@ -31,8 +30,24 @@ function Home() {
       }
     };
     loadData();
-  }, []);
+  });
 
+  // useEffect(() => {
+  //  const loadData = async () => {
+  //  setIsLoading(true);
+  // const data = await axios.get("/chart");
+  // setChart(data.data);
+  //  setIsLoading(false);
+  //  try {
+  //  setIsLoading(true);
+  //   const data = await loadCharts();
+  //  setChart(data);
+  // } catch (err) {
+  //   toast.error(err.message);
+  //  } finally {
+  //  setIsLoading(false);
+  //  }
+  // };
   return (
     <main>
       <Hero tracks={radio} />
